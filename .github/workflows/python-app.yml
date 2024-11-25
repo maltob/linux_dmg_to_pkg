@@ -29,6 +29,7 @@ jobs:
     - name: Package an app
       run: |
         sudo mkdir /out/
+        bash download.sh
         python build_a_pkg.py
     - name: Test with pytest
       uses: actions/upload-artifact@v4.4.3
