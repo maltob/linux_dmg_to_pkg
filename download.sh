@@ -1,2 +1,2 @@
 mkdir input
-curl "https://cdn-fastly.obsproject.com/downloads/obs-studio-30.2.3-macos-intel.dmg" -o "input/obs-studio-30.2.3-macos-intel.dmg"
+curl "https://download-installer.cdn.mozilla.net/pub/firefox/releases/132.0.2/mac/en-US/Firefox%20132.0.2.dmg" -o "input/firefox132.0.2.dmg"
