@@ -28,7 +28,7 @@ jobs:
         bash install_prereq_ubuntu.sh
     - name: Package an app
       run: |
-        sudo mkdir /out/
+        sudo mkdir /out/ && sudo chmod 777 /out/
         bash download.sh
         python build_a_pkg.py
     - name: Test with pytest
