@@ -28,7 +28,7 @@ jobs:
         bash install_prereq_ubuntu.sh
     - name: Package an app
       run: |
-        mkdir /out/
+        sudo mkdir /out/
         python build_a_pkg.py
     - name: Test with pytest
       uses: actions/upload-artifact@v4.4.3
