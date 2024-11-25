@@ -1,0 +1,20 @@
+FROM fedora:41 AS baseos
+RUN dnf update -y && dnf install -y xar dmg2img hfsplus-tools python3 curl
+FROM fedora:41 AS bomBuilder
+RUN dnf install -y git make g++ ld automake
+RUN git clone "https://github.com/maltob/bomutils.git" /tmp/bomutils
+WORKDIR /tmp/bomutils
+RUN make
+FROM baseos AS add7z
+RUN curl https://www.7-zip.org/a/7z2408-linux-x64.tar.xz -o 7z.tar.xz && tar -xf 7z.tar.xz 7zzs && cp 7zzs /usr/bin/7zzs && chmod +x /usr/bin/7zzs
+FROM add7z AS app
+COPY --from=bomBuilder /tmp/bomutils/build/bin/mkbom /usr/bin/
+COPY --from=bomBuilder /tmp/bomutils/build/bin/lsbom /usr/bin/
+COPY --from=bomBuilder /tmp/bomutils/build/bin/dumpbom /usr/bin/
+RUN mkdir /app
+RUN mkdir /out
+COPY build_a_pkg.py /app/build_a_pkg.py
+WORKDIR /app/
+VOLUME /out
+VOLUME /app/input
+CMD python /app/build_a_pkg.py
