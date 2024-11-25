@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pkg-info overwrite-permissions="true" relocatable="false" identifier="${CFBUNDLE_IDENTIFIER}" postinstall-action="none" version="${PKG_VERSION}" format-version="2" generator-version="build_a_pkgPy" install-location="${INSTALL_LOCATION}" auth="root">
+<payload numberOfFiles="${NUMBER_OF_FILES}" installKBytes="${INSTALL_KBYTES}"/>
+ <bundle-version>
+   <bundle id="${CFBUNDLE_IDENTIFIER}" CFBundleIdentifier="${CFBUNDLE_IDENTIFIER}" path="${APP_PATH}" CFBundleVersion="${CFBUNDLEVERSION}"/>
+ </bundle-version>
+<relocate/>
+<scripts/>
+</pkg-info>
