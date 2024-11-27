@@ -36,6 +36,6 @@ jobs:
           path: /out/*.pkg
     - name: Release
       uses: softprops/action-gh-release@v2
-      tag: obs-studio-30.2.3-macos-intel
       with:
         files: /out/*.pkg
+        tag_name: obs-studio-30.2.3-macos-intel
