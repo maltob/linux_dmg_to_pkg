@@ -6,11 +6,9 @@ name: Python application
 on:
   push:
     branches: [ "obs", "firefox" ]
-  pull_request:
-    branches: [ "obs", "firefox" ]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -31,10 +29,13 @@ jobs:
         sudo mkdir /out/ && sudo chmod 777 /out/
         bash download.sh
         python build_a_pkg.py
-    - name: Test with pytest
+     - name: Upload pkg
       uses: actions/upload-artifact@v4.4.3
       with:
-          # Artifact name
-          name: artifact.pkg
           # A file, directory or wildcard pattern that describes what to upload
           path: /out/*.pkg
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: /out/*.pkg
+        tag_name: Firefox_132.0.2
